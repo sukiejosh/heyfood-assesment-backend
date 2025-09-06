@@ -7,7 +7,10 @@ import { closeConnection, testConnection } from './config/database';
 import apiRoutes from './routes/index';
 
 // Load environment variables
-dotenv.config();
+const env = process.env.NODE_ENV || "local";
+console.log(`Loading environment variables from .env.${env}`);
+// Load the corresponding .env file
+dotenv.config({ path: `.env.${env}` });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
